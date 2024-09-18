@@ -232,7 +232,7 @@ export class GsClient {
     }
 
     private setStat(eventName: string) {
-        this.windowCount = this.windowCount + 1; 
+        this.windowCount = this.windowCount + 1;
         // total events per event type
         if (!this.statsSummary[eventName]){
             this.statsSummary[eventName] = 1;

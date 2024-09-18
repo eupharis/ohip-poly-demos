@@ -37,14 +37,15 @@ export async function getOhipToken(): Promise<string> {
 
     if (exp <= thresholdSeconds) {
       // get access token
-      const token = (await poly.ohip.auth.getAccessToken(
+      const token = (await poly.OOB.ohip.auth.getToken(
         env.inject('ohip.hostName'),
         env.inject('ohip.appKey'),
         env.inject('ohip.clientSecret'),
         env.inject('ohip.clientId'),
         {
-          Username: env.inject('ohip.username'),
-          Password: env.inject('ohip.password')
+          username: env.inject('ohip.username'),
+          password: env.inject('ohip.password'),
+          grantType: 'password'
         }
       )).data.access_token;
       await vari.ohip.token.update(token);

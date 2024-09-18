@@ -13,7 +13,7 @@ export async function getHotelId(hotelName: string): Promise<string> {
     const hotelsInChain = (await poly.ohip.property.getAllHotelsInChain(env.inject('ohip.hostName'), env.inject('ohip.hotelId'), env.inject('ohip.appKey'), token)).data.listOfValues.items;
     let found = false;
     let hotelId = '';
-    hotelsInChain.forEach((hotel)=>{
+    hotelsInChain.forEach((hotel: any)=>{
       console.log(hotel, hotelName);
       if (hotel.name.toLowerCase()===hotelName.toLowerCase()){
         hotelId = hotel.code;
