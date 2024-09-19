@@ -169,7 +169,7 @@ Vari's is how PolyApi refers to environment variables and secrets. All demos in 
 1- Open the OHIP-POLY environment and set the corresponding values for the following variables:
   - *Username* & *Password*: An OPERA Cloud Integration user with chain-admin access rights corresponding to the environment you're connecting to. Refer to the [OHIP user guide](https://docs.oracle.com/cd/F29336_01/doc.201/f27480/c_oracle_hospitality_property_apis.htm#OHIPU-ObtainingDetailsFromTheHotel-9658BF97) for how-to steps. If you are a partner you can use the [partner sandbox](https://docs.oracle.com/cd/F29336_01/doc.201/f27480/t_getting_started_for_partners.htm#OHIPU-QuickStartForPartnersUsingThePartne-7D3250F7) details.
   - *HostName*: OHIPs API Gateway URL. You can obtain this value from the environment tab of the OHIP development portal. Refer to the [OHIP user guide](https://docs.oracle.com/cd/F29336_01/doc.201/f27480/t_environments_gateways_and_credentials.htm#OHIPU-EnvironmentsGatewaysAndCredentials-B637B444) for how-to steps. If you are a partner you can use the [partner sandbox](https://docs.oracle.com/cd/F29336_01/doc.201/f27480/t_getting_started_for_partners.htm#OHIPU-QuickStartForPartnersUsingThePartne-7D3250F7) details.
-  - *CLIENT_SECRET* & *CLIENT_SECRET*: 
+  - *CLIENT_SECRET* & *CLIENT_SECRET*:
   - *AppKey*: An OHIP application key. You can obtain this value from the application tab of the OHIP development portal. Refer to the [OHIP user guide](https://docs.oracle.com/cd/F29336_01/doc.201/f27480/c_register_and_manage_applications.htm#OHIPU-RegisterAndManageApplications-D59DF702) for how-to steps.
   - *HotelId*: a default hotel Id is required to perform common operations like obtaining hotels in a chain. If you are a partner you can use the [partner sandbox](https://docs.oracle.com/cd/F29336_01/doc.201/f27480/t_getting_started_for_partners.htm#OHIPU-QuickStartForPartnersUsingThePartne-7D3250F7) details.
   - *GoogleMaps-AppKey*: an [application key](https://developers.google.com/maps/documentation/javascript/get-api-key) to be able to call the Google Maps API.
@@ -316,3 +316,17 @@ See [LICENSE](LICENSE.txt) for more details.
 ## Disclaimer
 
 This is NOT an official or supported project by Oracle. This project is intended solely for demonstration purposes and should be used at your own risk. No warranty or guarantee of reliability, accuracy, or completeness is provided. Any use of this project is solely at your own risk and we are not responsible for any losses or damages incurred.
+
+## Streaming Client Showcase
+
+To use the streaming client, you need to do the following:
+
+1. Checkout the `streaming` branch.
+2. Set all the environment variables in the `postman/OHIP-Poly.postman_environment.json` (already done on NA1)
+3. Set all the vari variables using `postman/OHIP-Poly.postman_collection.json` (already done on NA1)
+4. Run `npx poly setup` and enter `na1` and our streaming env key.
+4. Run `npx poly generate`
+4. In Terminal A, run `npx ts-node src/streaming-client/sclient.ts` to run your sclient locally.
+4. Wait a while until you start seeing `Ping Sent` and `Pong Received` in Terminal A.
+5. In Terminal B, Run `npx ts-node src/streaming-client/testSclient.ts` to do an arbritrary OHIP action (in this case create a reservation)
+6. In Terminal A, you should see your reservation creation be picked up the streaming client!
