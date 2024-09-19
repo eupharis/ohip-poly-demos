@@ -321,6 +321,7 @@ This is NOT an official or supported project by Oracle. This project is intended
 
 To use the streaming client, you need to do the following:
 
+1. Clone this repo and cd in.
 1. Checkout the `streaming` branch.
 2. Set all the environment variables in the `postman/OHIP-Poly.postman_environment.json` (already done on NA1)
 3. Set all the vari variables using `postman/OHIP-Poly.postman_collection.json` (already done on NA1)
